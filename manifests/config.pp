@@ -13,7 +13,7 @@ class nginx::config (
 
 ){
 
- file { ' ':
+ file { 'nginx_conf':
    ensure => $config_ensure,
    path   => "${config_dir}/nginx.conf",
    mode   => $config_mode,
@@ -21,4 +21,17 @@ class nginx::config (
    group  => $config_group,
    content => template("${module_name}/conf.d/nginx.conf.erd"),
   }
+ 
+ file { $log_dir:
+   ensure  => directory,
+   recures => true,
+ }
+
+ file { $docroot:
+   ensure  => directory,
+   recures => true,
+   mode    => $config_mode,
+   owner   => $config_owner,
+   group   => $config_group,
+ }
 }
