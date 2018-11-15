@@ -29,7 +29,7 @@ class nginx::config (
 
  file { $docroot:
    ensure  => directory,
-   recures => true,
+   recurse => true,
    mode    => $config_mode,
    owner   => $config_owner,
    group   => $config_group,
